@@ -8,4 +8,14 @@ class Api {
     var res = await get(Uri.parse(baseUrl + 'students/?api_key=' + key));
     return res;
   }
+
+  Future<Response> fetchSubjects() async {
+    var res = await get(Uri.parse(baseUrl + 'subjects/?api_key=' + key));
+    return res;
+  }
+  
+  Future<Response> fetchClassrooms() async {
+    var res = await get(Uri.parse(baseUrl + 'classrooms/?api_key=' + key));
+    return res;
+  }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hamon_interviewapi/providers/classroom_provider.dart';
 import 'package:hamon_interviewapi/providers/students_provider.dart';
+import 'package:hamon_interviewapi/providers/subject_provider.dart';
 import 'package:hamon_interviewapi/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +26,10 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider<StudentsProvider>(
               create: (_) => StudentsProvider(api)),
+               ChangeNotifierProvider<SubjectProvider>(
+              create: (_) => SubjectProvider(api)),
+              ChangeNotifierProvider<ClassroomProvider>(
+              create: (_) => ClassroomProvider(api)),
         ],
         child: const MyHomePage(),
       ),

@@ -22,14 +22,16 @@ void initState() {
   Widget build(BuildContext context) {
     var prov = Provider.of<StudentsProvider>(context);
     
-    return prov.isLoading
-        ? const Scaffold(
-            body: Center(
+    return  Scaffold(
+            body:!prov.isLoading && prov.studentsDetails.isEmpty
+          ? Center(
+              child: ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('refresh')))
+          :  prov.isLoading? const Center(
               child: CircularProgressIndicator(),
-            ),
-          )
-        : Scaffold(
-            body: ListView.builder(
+            ): ListView.builder(
                 itemCount: prov.studentsDetails.length,
                 itemBuilder: (context, int index) {
                   return ListTile(

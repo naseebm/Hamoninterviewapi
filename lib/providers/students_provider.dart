@@ -31,6 +31,8 @@ class StudentsProvider extends ChangeNotifier {
       _isLoading = false;
 
       notifyListeners();
-    } else {}
+    } else {
+      _isLoading = false;
+    }
   }
 }
