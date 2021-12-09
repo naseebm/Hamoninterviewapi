@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hamon_interviewapi/providers/classroom_provider.dart';
+import 'package:hamon_interviewapi/providers/classrooms_provider.dart';
+import 'package:hamon_interviewapi/screens/classroom_detail.dart';
 import 'package:provider/provider.dart';
 
 class ClassRooms extends StatefulWidget {
@@ -14,6 +15,7 @@ class _ClassRoomsState extends State<ClassRooms> {
   void initState() {
     var prov = Provider.of<ClassroomProvider>(context, listen: false);
     prov.fetchClassrooms();
+
     super.initState();
   }
 
@@ -35,6 +37,12 @@ class _ClassRoomsState extends State<ClassRooms> {
                   itemCount: prov.classroomsDetails.length,
                   itemBuilder: (context, int index) {
                     return ListTile(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>  ClassroomDetail(id:prov.classroomsDetails[index].id)));
+                      },
                       leading:
                           Text(prov.classroomsDetails[index].id.toString()),
                       title: Text(prov.classroomsDetails[index].name),

@@ -13,9 +13,30 @@ class Api {
     var res = await get(Uri.parse(baseUrl + 'subjects/?api_key=' + key));
     return res;
   }
-  
+
   Future<Response> fetchClassrooms() async {
     var res = await get(Uri.parse(baseUrl + 'classrooms/?api_key=' + key));
+    return res;
+  }
+
+  Future<Response> fetchClassroom(int id) async {
+    var res = await get(
+        Uri.parse(baseUrl + 'classrooms/' + id.toString() + '?api_key=' + key));
+
+    return res;
+  }
+
+  Future<Response> fetchStudent(int id) async {
+    var res = await get(
+        Uri.parse(baseUrl + 'students/' + id.toString() + '?api_key=' + key));
+
+    return res;
+  }
+
+  Future<Response> fetchSubject(int id) async {
+    var res = await get(
+        Uri.parse(baseUrl + 'subjects/' + id.toString() + '?api_key=' + key));
+
     return res;
   }
 }

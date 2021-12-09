@@ -9,10 +9,12 @@ class ClassroomProvider extends ChangeNotifier {
   ClassroomProvider(this.api);
   List<ClassroomModel> _classroomsDetails = [];
   bool _isLoading = false;
-  
+  ClassroomModel? _classroomDetails;
 
   List<ClassroomModel> get classroomsDetails => _classroomsDetails;
+  ClassroomModel? get classroomDetails => _classroomDetails;
   bool get isLoading => _isLoading;
+
   fetchClassrooms() async {
     if (_classroomsDetails.isNotEmpty) {
       return;
@@ -31,10 +33,26 @@ class ClassroomProvider extends ChangeNotifier {
 
       notifyListeners();
     } else {
-
       //1111
       _isLoading = false;
+    }
+  }
 
+  fetchClassroom(int id) async {
+    _isLoading = true;
+    var res = await api.fetchClassroom(id);
+
+    if (res.statusCode == 200) {
+      var decoded = jsonDecode(res.body);
+
+      _classroomDetails = 
+          ClassroomModel.fromMap(decoded);
+
+      _isLoading = false;
+
+      notifyListeners();
+    } else {
+      _isLoading = false;
     }
   }
 }
