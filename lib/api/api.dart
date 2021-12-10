@@ -39,4 +39,17 @@ class Api {
 
     return res;
   }
+
+  Future<Response> assignSubject(int subjectId, int classroomId) async {
+    var res = await patch(
+        Uri.parse(baseUrl +
+            'classrooms/' +
+            classroomId.toString() +
+            '?api_key=' +
+            key),
+        body: {
+          'subject': subjectId.toString(),
+        });
+    return res;
+  }
 }

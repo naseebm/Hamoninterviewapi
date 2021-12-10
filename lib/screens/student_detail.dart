@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hamon_interviewapi/providers/students_provider.dart';
+import 'package:hamon_interviewapi/widgets/custom_card.dart';
 
 import 'package:provider/provider.dart';
 
 class StudentDetail extends StatefulWidget {
-  const StudentDetail({Key? key, required this.id}) : super(key: key);
+  const StudentDetail({Key? key, required this.id, required this.title}) : super(key: key);
    final int id;
+   final String title;
   @override
   State<StudentDetail> createState() => _StudentDetailState();
 }
@@ -20,9 +22,10 @@ class _StudentDetailState extends State<StudentDetail> {
   }
   @override
   Widget build(BuildContext context) {
+    var width=MediaQuery.of(context).size.width;
     var prov = Provider.of<StudentsProvider>(context, );
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text(widget.title),),
       body:
      !prov.isLoading && prov.studentDetails==null
           ? Center(
@@ -35,29 +38,28 @@ class _StudentDetailState extends State<StudentDetail> {
                   child: CircularProgressIndicator(),
                 )
               :
-              Center(
-                child: Card(
+           
+               
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
                   child: Column(
-                    mainAxisAlignment:MainAxisAlignment.center,
-                    children: [
+                     mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                       
+                       customCard('name', prov.studentDetails!.name,width ),
+                       customCard('layout', prov.studentDetails!.email,width),
+                       customCard('id',prov.studentDetails!.id.toString(),width),
+                       customCard('size', prov.studentDetails!.age.toString(),width),
                      
-                     customCard('name', prov.studentDetails!.name ),
-                     customCard('layout', prov.studentDetails!.email),
-                     customCard('id',prov.studentDetails!.id.toString()),
-                     customCard('size', prov.studentDetails!.age.toString()),
-                   //  customCard('subject', prov.StudentDetails!.subject.toString())
-                
-                  ],),
-                ),
-              )
+                  
+                    ],
+                  
+              ),
+                )
        
     );
   }
 
-  Widget customCard (String labelName, String label){
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(labelName+ ' : ' +label,),
-    );
-  }
+ 
 }

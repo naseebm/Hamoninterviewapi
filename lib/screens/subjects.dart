@@ -42,9 +42,13 @@ class _SubjectsState extends State<Subjects> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => SubjectDetail(
-                                    id: prov.subjectssDetails[index].id)));
+                                    id: prov.subjectssDetails[index].id,
+                                    title:prov.subjectssDetails[index].name  ,)));
                       },
-                      leading: Text(prov.subjectssDetails[index].id.toString()),
+                      leading:Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(prov.subjectssDetails[index].id.toString()),
+                      ),
                       title: Text(prov.subjectssDetails[index].name),
                       subtitle: Text(prov.subjectssDetails[index].teacher),
                     );

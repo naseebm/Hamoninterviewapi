@@ -11,11 +11,13 @@ class SubjectProvider extends ChangeNotifier {
   SubjectProvider(this.api);
   List<SubjectModel> _subjectsDetails = [];
   bool _isLoading = false;
+  
+
   SubjectModel? _subjectDetail;
 
   List<SubjectModel> get subjectssDetails => _subjectsDetails;
   bool get isLoading => _isLoading;
-
+  
   SubjectModel? get subjectDetail=>_subjectDetail;
 
   fetchSubjects() async {
@@ -31,9 +33,9 @@ class SubjectProvider extends ChangeNotifier {
       _subjectsDetails = decoded['subjects']
           .map<SubjectModel>((e) => SubjectModel.fromMap(e))
           .toList();
-
+        
       _isLoading = false;
-
+      
       notifyListeners();
     } else {_isLoading = false;}
   }
@@ -43,7 +45,7 @@ class SubjectProvider extends ChangeNotifier {
 
     if (res.statusCode == 200) {
       var decoded = jsonDecode(res.body);
-  print(decoded);
+
       _subjectDetail = 
           SubjectModel.fromMap(decoded);
 

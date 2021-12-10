@@ -41,10 +41,14 @@ class _ClassRoomsState extends State<ClassRooms> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  ClassroomDetail(id:prov.classroomsDetails[index].id)));
+                                builder: (context) =>  ClassroomDetail(id:prov.classroomsDetails[index].id,
+                                title:prov.classroomsDetails[index].name ,)));
                       },
                       leading:
-                          Text(prov.classroomsDetails[index].id.toString()),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(prov.classroomsDetails[index].id.toString()),
+                          ),
                       title: Text(prov.classroomsDetails[index].name),
                       subtitle: Text(prov.classroomsDetails[index].layout),
                     );
