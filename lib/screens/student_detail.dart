@@ -50,10 +50,10 @@ class _StudentDetailState extends State<StudentDetail> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                            
-                           customCard('name', prov.studentDetails!.name,width ),
-                           customCard('layout', prov.studentDetails!.email,width),
-                           customCard('id',prov.studentDetails!.id.toString(),width),
-                           customCard('size', prov.studentDetails!.age.toString(),width),
+                           customCard('Name', prov.studentDetails!.name,width ),
+                           customCard('Layout', prov.studentDetails!.email,width),
+                           customCard('Id',prov.studentDetails!.id.toString(),width),
+                           customCard('Size', prov.studentDetails!.age.toString(),width),
                          
                       
                         ],

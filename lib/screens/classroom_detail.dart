@@ -70,7 +70,7 @@ class _ClassroomDetailState extends State<ClassroomDetail> {
                           Row(
                             children: [
                               classroomCard(
-                                  'subject',
+                                  'Subject',
                                 prov.classroomDetails!.subject==null?'Not Assigned':
                                 
                                   subjectsProv.subjectssDetails

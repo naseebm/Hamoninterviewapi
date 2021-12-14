@@ -28,7 +28,7 @@ class _StudentsState extends State<Students> {
               child: ElevatedButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.refresh),
-                  label: const Text('refresh')))
+                  label: const Text('Refresh')))
           : prov.isLoading
               ? const LinearProgressIndicator()
                 
