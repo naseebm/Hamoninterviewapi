@@ -28,9 +28,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Hamon interview app',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+           primarySwatch: Colors.indigo,
       ),
       home: const MyHomePage(),
     );

@@ -38,7 +38,8 @@ class _ClassroomDetailState extends State<ClassroomDetail> {
     var subjectsProv = Provider.of<SubjectProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(prov.classroomDetails!.name),
+        title: Text(widget.title),
+        //
       ),
       body: !prov.isLoading && prov.classroomDetails == null
           ? Center(
@@ -47,63 +48,86 @@ class _ClassroomDetailState extends State<ClassroomDetail> {
                   icon: const Icon(Icons.refresh),
                   label: const Text('refresh')))
           : prov.isLoading || subjectsProv.isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const  LinearProgressIndicator()
+                
               : Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      customCard('name', prov.classroomDetails!.name, width),
-                      customCard(
-                          'layout', prov.classroomDetails!.layout, width),
-                      customCard(
-                          'id', prov.classroomDetails!.id.toString(), width),
-                      customCard('size', prov.classroomDetails!.size.toString(),
-                          width),
-                      Row(
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                child: Card(
+                  child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          customCard('subject',
-                              prov.classroomDetails!.subject.toString(), width),
-                          ElevatedButton.icon(
-                              onPressed: () async {
-                                var subjectId = await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => SubjectAssignScreen(
-                                            subjects: subjectsProv
-                                                .subjectssDetails)));
-
-                                var res = await prov.assignSubject(subjectId);
-                                if (res.statusCode == 200) {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(const SnackBar(
-                                    content: Text('Successfully updated'),
-                                  ));
-                                  prov.fetchClassroom(widget.id);
-                                } else {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(SnackBar(
-                                    content: const Text('Failed'),
-                                    action: SnackBarAction(
-                                        label: 'retry',
-                                        onPressed: () {
-                                          prov.assignSubject(subjectId);
-                                        }),
-                                  ));
-                                }
-                              },
-                              icon: const Icon(Icons.edit),
-                              label: prov.classroomDetails!.subject == null
-                                  ? const Text('Assign a subject')
-                                  : const Text('Edit subject'))
+                          classroomCard('Name', prov.classroomDetails!.name, width),
+                          classroomCard(
+                              'Layout', prov.classroomDetails!.layout, width),
+                          classroomCard(
+                              'Id', prov.classroomDetails!.id.toString(), width),
+                          classroomCard('Size', prov.classroomDetails!.size.toString(),
+                              width),
+                          Row(
+                            children: [
+                              classroomCard(
+                                  'subject',
+                                prov.classroomDetails!.subject==null?'Not Assigned':
+                                
+                                  subjectsProv.subjectssDetails
+                                      .firstWhere((element) => element.id == prov.classroomDetails!.subject)
+                                      .name,
+                
+                              
+                
+                                  width),
+                              SizedBox(
+                                
+                                child: TextButton.icon(
+                                    onPressed: () async {
+                                      var subjectId = await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => SubjectAssignScreen(
+                                                  subjects: subjectsProv
+                                                      .subjectssDetails)));
+                                       if(subjectId!=null){
+                                         var res = await prov.assignSubject(subjectId);
+                                       
+                                      
+                                      if (res.statusCode == 200) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                          content: Text('Successfully updated'),
+                                        ));
+                                        prov.fetchClassroom(widget.id);
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                          content: const Text('Failed'),
+                                          action: SnackBarAction(
+                                              label: 'retry',
+                                              onPressed: () {
+                                                prov.assignSubject(subjectId);
+                                              }),
+                                        ));
+                                      }}
+                                    },
+                                    icon: const Icon(Icons.edit),
+                                    label: prov.classroomDetails!.subject == null
+                                        ? const SizedBox(
+                                            child: Text(
+                                            'Assign',
+                                          ))
+                                        : const SizedBox(
+                                            child: Text('Edit'))),
+                              )
+                            ],
+                          )
                         ],
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
                 ),
+              ),
     );
   }
 }

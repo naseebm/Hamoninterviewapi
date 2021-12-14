@@ -34,28 +34,33 @@ class _StudentDetailState extends State<StudentDetail> {
                   icon: const Icon(Icons.refresh),
                   label: const Text('refresh')))
           : prov.isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const  LinearProgressIndicator()
+                
               :
            
                
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                     mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                       
-                       customCard('name', prov.studentDetails!.name,width ),
-                       customCard('layout', prov.studentDetails!.email,width),
-                       customCard('id',prov.studentDetails!.id.toString(),width),
-                       customCard('size', prov.studentDetails!.age.toString(),width),
-                     
-                  
-                    ],
-                  
-              ),
+                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                         mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                           
+                           customCard('name', prov.studentDetails!.name,width ),
+                           customCard('layout', prov.studentDetails!.email,width),
+                           customCard('id',prov.studentDetails!.id.toString(),width),
+                           customCard('size', prov.studentDetails!.age.toString(),width),
+                         
+                      
+                        ],
+                      
+                                ),
+                    ),
+                  ),
                 )
        
     );

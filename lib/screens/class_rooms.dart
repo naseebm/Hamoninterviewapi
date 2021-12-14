@@ -30,27 +30,31 @@ class _ClassRoomsState extends State<ClassRooms> {
                   icon: const Icon(Icons.refresh),
                   label: const Text('refresh')))
           : prov.isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const  LinearProgressIndicator()
+                
               : ListView.builder(
                   itemCount: prov.classroomsDetails.length,
                   itemBuilder: (context, int index) {
-                    return ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>  ClassroomDetail(id:prov.classroomsDetails[index].id,
-                                title:prov.classroomsDetails[index].name ,)));
-                      },
-                      leading:
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text(prov.classroomsDetails[index].id.toString()),
-                          ),
-                      title: Text(prov.classroomsDetails[index].name),
-                      subtitle: Text(prov.classroomsDetails[index].layout),
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: Card(
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>  ClassroomDetail(id:prov.classroomsDetails[index].id,
+                                    title:prov.classroomsDetails[index].name ,)));
+                          },
+                          leading:
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(prov.classroomsDetails[index].id.toString()),
+                              ),
+                          title: Text(prov.classroomsDetails[index].name),
+                          subtitle: Text(prov.classroomsDetails[index].layout),
+                        ),
+                      ),
                     );
                   }),
     );

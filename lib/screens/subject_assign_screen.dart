@@ -37,8 +37,10 @@ class _SubjectAssignScreenState extends State<SubjectAssignScreen> {
                 .toList(),
           ),
         ),
-        Expanded(child: Center(child:ElevatedButton(onPressed: (){
+        Expanded(child: Center(child:ElevatedButton(onPressed: _checkedSubject==null?null :(){
+        
           Navigator.pop(context,_checkedSubject );
+          
         }, child:const Text('Assign subject'))),)
       ],
     ));

@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hamon interview app'),
+        title: const Text('Classroom Manager'),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _pageIndex,

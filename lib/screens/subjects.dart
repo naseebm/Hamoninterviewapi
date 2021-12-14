@@ -30,27 +30,33 @@ class _SubjectsState extends State<Subjects> {
                   icon: const Icon(Icons.refresh),
                   label: const Text('refresh')))
           : prov.isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const 
+                   LinearProgressIndicator()
+                
               : ListView.builder(
                   itemCount: prov.subjectssDetails.length,
                   itemBuilder: (context, int index) {
-                    return ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => SubjectDetail(
-                                    id: prov.subjectssDetails[index].id,
-                                    title:prov.subjectssDetails[index].name  ,)));
-                      },
-                      leading:Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(prov.subjectssDetails[index].id.toString()),
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: Card(
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => SubjectDetail(
+                                          id: prov.subjectssDetails[index].id,
+                                          title: prov.subjectssDetails[index].name,
+                                        )));
+                          },
+                          leading: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(prov.subjectssDetails[index].id.toString()),
+                          ),
+                          title: Text(prov.subjectssDetails[index].name),
+                          subtitle: Text(prov.subjectssDetails[index].teacher),
+                        ),
                       ),
-                      title: Text(prov.subjectssDetails[index].name),
-                      subtitle: Text(prov.subjectssDetails[index].teacher),
                     );
                   }),
     );

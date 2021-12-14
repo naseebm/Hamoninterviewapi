@@ -30,27 +30,31 @@ class _StudentsState extends State<Students> {
                   icon: const Icon(Icons.refresh),
                   label: const Text('refresh')))
           : prov.isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const LinearProgressIndicator()
+                
               : ListView.builder(
                   itemCount: prov.studentsDetails.length,
                   itemBuilder: (context, int index) {
-                    return ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => StudentDetail(
-                                    id: prov.studentsDetails[index].id,
-                                    title:prov.studentsDetails[index].name )));
-                      },
-                      leading: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(prov.studentsDetails[index].id.toString()),
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: Card(
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => StudentDetail(
+                                        id: prov.studentsDetails[index].id,
+                                        title:prov.studentsDetails[index].name )));
+                          },
+                          leading: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(prov.studentsDetails[index].id.toString()),
+                          ),
+                          title: Text(prov.studentsDetails[index].name),
+                          subtitle: Text(prov.studentsDetails[index].email),
+                        ),
                       ),
-                      title: Text(prov.studentsDetails[index].name),
-                      subtitle: Text(prov.studentsDetails[index].email),
                     );
                   }),
     );

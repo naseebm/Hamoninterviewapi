@@ -35,24 +35,29 @@ class _SubjectDetailState extends State<SubjectDetail> {
                   icon: const Icon(Icons.refresh),
                   label: const Text('refresh')))
           : prov.isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const LinearProgressIndicator()
+                
               :
              Padding(
-               padding: const EdgeInsets.all(10.0),
-               child: Column(
-                       mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                       
-                       customCard('name', prov.subjectDetail!.name,width ),
-                       customCard('layout', prov.subjectDetail!.teacher,width),
-                       customCard('id',prov.subjectDetail!.id.toString(),width),
-                       customCard('size', prov.subjectDetail!.credits.toString(),width),
-                     
-                  
-                    ],),
+               padding: const EdgeInsets.symmetric(horizontal: 6),
+               child: Card(
+                 child: Padding(
+                   padding: const EdgeInsets.all(4.0),
+                   child: Column(
+                     mainAxisSize: MainAxisSize.min,
+                           mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                           
+                           customCard('Name', prov.subjectDetail!.name,width ),
+                           customCard('Layout', prov.subjectDetail!.teacher,width),
+                           customCard('Id',prov.subjectDetail!.id.toString(),width),
+                           customCard('Size', prov.subjectDetail!.credits.toString(),width),
+                         
+                      
+                        ],),
+                 ),
+               ),
              ),
               
     );

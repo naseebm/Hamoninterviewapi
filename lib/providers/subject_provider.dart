@@ -12,10 +12,12 @@ class SubjectProvider extends ChangeNotifier {
   List<SubjectModel> _subjectsDetails = [];
   bool _isLoading = false;
   
+  
 
   SubjectModel? _subjectDetail;
 
   List<SubjectModel> get subjectssDetails => _subjectsDetails;
+  
   bool get isLoading => _isLoading;
   
   SubjectModel? get subjectDetail=>_subjectDetail;
@@ -33,7 +35,7 @@ class SubjectProvider extends ChangeNotifier {
       _subjectsDetails = decoded['subjects']
           .map<SubjectModel>((e) => SubjectModel.fromMap(e))
           .toList();
-        
+    
       _isLoading = false;
       
       notifyListeners();

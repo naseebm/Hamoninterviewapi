@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hamon_interviewapi">
+    package="com.naseeb.classroom">
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="hamon_interviewapi"
         android:icon="@mipmap/ic_launcher">
